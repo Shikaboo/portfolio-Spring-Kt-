@@ -40,8 +40,8 @@ class Project(
     @JoinColumn(name = "project_id")
     var details: MutableList<ProjectDetail> = mutableListOf()
 
-    @OneToMany(mappedBy = "project")
-    var skills: MutableList<ProjectDetail> = mutableListOf()
+    @OneToMany(mappedBy = "project", fetch = FetchType.LAZY, cascade = [CascadeType.PERSIST])
+    var skills: MutableList<ProjectSkill> = mutableListOf()
 
     fun getEndYearMonth(): String {
         if (endYear == null || endMonth == null) {
